@@ -5,7 +5,9 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+* [Ruby 3.2.5](https://docs.ruby-lang.org/en/3.2/)
+
+* NOTE: At the time of updating this README, entering student details is broken for unknown reasons. It was working a few days ago. I assume there is some change I made ignorantly and now have to determine the fix.
 
 * System dependencies
 
