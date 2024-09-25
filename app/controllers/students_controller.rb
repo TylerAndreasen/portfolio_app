@@ -65,11 +65,6 @@ class StudentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :school_email, :major, :graduation_date)
-    end
-
-    # Is it possible to have two of these?
-    def student_params
-      params.require(:student).permit(:profile_picture)
+      params.require(:student).permit(:first_name, :last_name, :school_email, :major, :graduation_date, :profile_picture)
     end
 end

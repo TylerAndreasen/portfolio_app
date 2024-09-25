@@ -5,7 +5,7 @@ class Student < ApplicationRecord
     validates :last_name, presence: true
     #PFP not required
     validates :school_email, uniqueness: true
-    #validates :school_email, format: { with: /\A[\w]+@msudenver\.edu+\z/, message: "does not match expected format." }, uniqueness: true
+    validates :school_email, format: { with: /\A[\w]+@msudenver\.edu+\z/, message: "does not match expected format." }, uniqueness: true
     validates :major, presence: true
     validates :graduation_date, presence: true
     has_one_attached :profile_picture

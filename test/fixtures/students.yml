@@ -1,15 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  first_name: MyString
-  last_name: MyString
-  school_email: MyString
-  major: MyString
-  graduation_date: 2024-09-16
+  first_name: Indoril
+  last_name: Nerevar
+  school_email: inerevar
+  major: Being Betrayed
+  graduation_date: 2024-09-23
 
 two:
-  first_name: MyString
-  last_name: MyString
-  school_email: MyString
-  major: MyString
-  graduation_date: 2024-09-16
+  first_name: Cyridilic
+  last_name: Spadetaal
+  school_email: cspadeta
+  major: Alchemy
+  graduation_date: 2024-09-23

@@ -10,15 +10,6 @@
   </p>
 
 <p>
-  <strong>Profile Picture:</strong>
-  <% if student.profile_picture.attached? %>
-      <%= image_tag @student.profile_picture, size: "300x300" %>
-  <% else %>
-      <%= image_tag 'default_profile.jpg', size: "300x300" %>
-  <% end %>
-</p>
-
-<p>
 <strong>School email:</strong>
 <%= student.school_email %>
   </p>
