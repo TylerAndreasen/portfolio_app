@@ -3,13 +3,13 @@
 one:
   first_name: Indoril
   last_name: Nerevar
-  school_email: inerevar
+  school_email: inerevar@msudenver.edu
   major: Being Betrayed
   graduation_date: 2024-09-23
 
-two:
+spadetail:
   first_name: Cyridilic
-  last_name: Spadetaal
-  school_email: cspadeta
+  last_name: Spadetail
+  school_email: cspadeta@msudenver.edu
   major: Alchemy
   graduation_date: 2024-09-23
