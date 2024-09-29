@@ -51,22 +51,20 @@ class StudentsTest < ActiveSupport::TestCase
   end
 
   # Test 6: Attempt to Assign a duplicate email.
-  # This currently does not function as intended, as the duplicate email still assigns.
+  # This currently does not function as intended, as the duplicate email is still assigned.
   test "school_email_updated_to_existing_value" do
     assert students(:spadetail).school_email = "inerevar@msudenver.edu"
   end
-=begin
+
   # Test 7: No First Name Student
-  test "student_has_no_name" do
-    student0 = Student.new(first_name: "", last_name: "Andreasen", school_email: "tand@msudenver.edu", major: "Debugging", graduation_date: "2024/09/23")
-    assert_not student0.save
+  test "destroy_student_indoril" do
+    students(:one).delete
+    assert_raises(FrozenError) { students(:one).first_name = "Indoril" }
   end
 
   # Test 8: No First Name Student
-  test "student_has_no_name" do
-    student0 = Student.new(first_name: "", last_name: "Andreasen", school_email: "tand@msudenver.edu", major: "Debugging", graduation_date: "2024/09/23")
-    assert_not student0.save
+  test "dont_delete_student_which_doesnt_exist" do
+    assert_raises(StandardError) { students(:three).delete }
   end
-=end
 
 end
