@@ -9,4 +9,7 @@ class Student < ApplicationRecord
     validates :major, presence: true
     validates :graduation_date, presence: true
     has_one_attached :profile_picture
+
+    VALID_MAJORS = ["Computer Engineering BS","Computer Information Systems BS","Computer Science BS","Cybersecurity BS","Data Science and Machine Learning"]
+    validates :major, inclusion: {in: VALID_MAJORS, message: "%{value} is not a valid major"}
 end
