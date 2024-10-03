@@ -3,7 +3,24 @@ class StudentsController < ApplicationController
 
   # GET /students or /students.json
   def index
+
+    # Logging
+    Rails.logger.info "Params: #{params.inspect}"
+
+    @search_params = params[:search] || {}
     @students = Student.all
+
+    # I find this syntax to be unclear. I know that it is referecing data coming
+    # from the request and referencing calls to the Model to access things from
+    # the database, but which is which and the underlying logic I need to
+    # investigate.
+
+    # Logging
+    Rails.logger.info "Params: #{@search_params.inspect}"
+
+    if @search_params[:major].present?
+      @students = @students.where(major: @search_params[:major])
+    end
   end
 
   # GET /students/1 or /students/1.json
