@@ -19,17 +19,41 @@ class StudentsController < ApplicationController
     Rails.logger.info "Params: #{@search_params.inspect}"
 
     if @search_params[:major].present?
+      # puts "Cana 600  - Search by Major"
       @students = @students.where(major: @search_params[:major])
     end
 
-    # If the user selected to search by grad date...
-'''    if @search_params[:graduation_relation].present?
+    # If the user entered a date ...
+    if @search_params[:graduation_date].present?
 
-      # If the selection is Before
-      if @search_params[:graduation_relation].equal("Before")
-        puts "Test"
+      # puts "Cana 601 - Search by Graduation Date"
+
+      # If the user selected to search by grad date...
+      if @search_params[:graduation_relation].present?
+
+        # ... TEMP:: If the user combines invalid selections, no data is returned by default
+        # ... TODO:: Determine what the most user friendly behavior that I can build is for 
+        #       invalid user data entry. This may require JS work to stop the form being submitted
+        # ... If the user entered no date
+ 
+
+        @temp = @search_params[:graduation_date].to_s
+        # This feels like it could fall apart easily, but I am unsure how else to implement
+        @yr = @temp[0..3]
+        @mt = @temp[5..6]
+        @dy = @temp[8..9]
+
+        # ... If the selection is Before
+        if @search_params[:graduation_relation] == "Before"
+          # puts "Cana 602 - Search by Graduation Date: Before: "+@temp
+          @students = @students.where(:graduation_date => Time.new(1970,1,1)..Time.new(@yr,@mt,@dy))
+        # ... If the selection is After
+        elsif @search_params[:graduation_relation] == "After"
+          # puts "Cana 603 - Search by Graduation Date: After"
+          @students = @students.where(:graduation_date => Time.new(1970,1,1)..Time.new(@yr,@mt,@dy))
+        end
       end
-    end'''
+    end
   end
 
   # GET /students/1 or /students/1.json
