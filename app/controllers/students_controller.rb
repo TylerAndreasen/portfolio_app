@@ -50,7 +50,7 @@ class StudentsController < ApplicationController
         # ... If the selection is After
         elsif @search_params[:graduation_relation] == "After"
           # puts "Cana 603 - Search by Graduation Date: After"
-          @students = @students.where(:graduation_date => Time.new(1970,1,1)..Time.new(@yr,@mt,@dy))
+          @students = @students.where(:graduation_date => Time.new(@yr,@mt,@dy)..Time.new(9999, 12, 31))
         end
       end
     end
