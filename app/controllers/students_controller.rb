@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
   def index
 
     # Logging
-    Rails.logger.info "Params: #{params.inspect}"
+    # Rails.logger.info "Params: #{params.inspect}"
 
     @search_params = params[:search] || {}
     @students = Student.all
@@ -21,6 +21,15 @@ class StudentsController < ApplicationController
     if @search_params[:major].present?
       @students = @students.where(major: @search_params[:major])
     end
+
+    # If the user selected to search by grad date...
+'''    if @search_params[:graduation_relation].present?
+
+      # If the selection is Before
+      if @search_params[:graduation_relation].equal("Before")
+        puts "Test"
+      end
+    end'''
   end
 
   # GET /students/1 or /students/1.json

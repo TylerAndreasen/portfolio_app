@@ -5,11 +5,15 @@
 <%= render "search_form", search_params: @search_params %>
 
 <div id="students">
-  <% @students.each do |student| %>
-    <%= render student %>
-    <p>
-      <%= link_to "Show this student", student %>
-    </p>
+  <% if @students.count > 0 %>
+    <% @students.each do |student| %>
+      <%= render student %>
+      <p>
+        <%= link_to "Show this student", student %>
+      </p>
+    <% end %>
+  <% else %>
+  <p id=NoStudentsFound> No matching students were found. </p>
   <% end %>
 </div>
 

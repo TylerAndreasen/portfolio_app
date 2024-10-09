@@ -1,10 +1,19 @@
 <%= form_with(url: students_path, method: :get, local: true, class: "form-inline") do |form| %>
-    <div>
+    <div id=MajorSelect>
         <%= form.label :major, "Select Major", class: "form-label" %>
         <%= form.select :major, options_for_select(Student::VALID_MAJORS), { prompt: "Any Major"}, name: 'search[major]', class: "form-control" %> 
-    <div>
+    </div>
 
-    <div>
+    <div id=GraduationDateSelect>
+        <%= form.label :graduation_relation, "Select Graduation Relation", class: "form-label" %>
+        <%= form.select :graduation_relation, options_for_select(Student::VALID_GRADUATION_RELATIONS), { prompt: "Select An Option"}, name: 'search[graduation_relation]', class: "form-control" %> 
+        <%= form.label :graduation_date, "Date", class: "form-label" %>
+        <p>
+        <%# After more fighting with this than I should have done, I copied this from the Student form %> 
+        <%= form.date_field :graduation_date, name: 'search[graduation_date]' %>
+    </div>
+
+    <div id=SearchButton>
         <%= form.submit "Search", class: "btn btn-primary" %>
-        <div>
-    <% end %> 
+    </div>
+<% end %> 
