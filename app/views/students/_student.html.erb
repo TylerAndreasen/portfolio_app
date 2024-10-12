@@ -1,27 +1,13 @@
-<div id="<%= dom_id student %>">
-<p>
-<strong>First name:</strong>
-<%= student.first_name %>
-  </p>
-
-<p>
-<strong>Last name:</strong>
-<%= student.last_name %>
-  </p>
-
-<p>
-<strong>School email:</strong>
-<%= student.school_email %>
-  </p>
-
-<p>
-<strong>Major:</strong>
-<%= student.major %>
-  </p>
-
-<p>
-<strong>Graduation date:</strong>
-<%= student.graduation_date %>
-  </p>
-
-</div>
+<tr>
+  <th scope="row"></th>
+  <td><%= student.first_name %></td>
+  <td><%= student.last_name %></td>
+  <td><%= student.major %></td>
+  <td><%= student.graduation_date %></td>
+  <td>
+    <a class="btn btn-primary" <%= link_to "Show", student %></a>
+    <%# Non functional on purpose %>
+    <a class="btn btn-secondary" >Edit</a>
+    <a class="btn btn-danger" >Danger</a>
+  </td>
+</tr>

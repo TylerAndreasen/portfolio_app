@@ -1,29 +1,40 @@
 <p style="color: green"><%= notice %></p>
-
 <h1>Students</h1>
-
 <%= render "search_form", search_params: @search_params %>
 
-<%# TODO Implement EasyNewStudentButton, displayed when the number of filtered students is more than 2
-  <div id="EasyNewStudentButton">
-    <% if @students.count > 2 % >
-      <%= link_to "New student", new_student_path % >
-  </div>
-%>
-
-
-<div id=StudentList>
-  <% if @students.count > 0 %>
-    <%= "Found "+@students.count.to_s+" Student(s)"%>
-    <% @students.each do |student| %>
-      <%= render student %>
-      <p>
-        <%= link_to "Show this student", student %>
-      </p>
+<div id="EasyNewStudentButton">
+  <% if @students != nil %>
+    <% if @students.size() > 10 %>
+      <%= link_to "New student", new_student_path %>
     <% end %>
+  <% end %>
+</div>
+<div id=StudentList>
+  <%# The below should not be @students.count or similar, as such operations are invalid on nil objects %>
+  <% if @students != nil %>
+    <%= "Found "+@students.count.to_s+" Student(s)"%>
+    <table id=StudentTable class="table table-dark">
+       <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Major</th>
+            <th scope="col">Graduation Date</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @students.each do |student| %>
+            <%= render student %>
+          <% end %>
+        </tbody>
+    </table>
+  <% elsif @no_search_params %>
+    <p id=NoSearchParams> Please Enter Search Filters. </p >
   <% else %>
     <p id=NoStudentsFound> No matching students were found. </p>
   <% end %>
 </div>
-
 <%= link_to "New student", new_student_path %>
+<%# TODO Add padding to the bottom of each page, maybe do this in the application file.%>

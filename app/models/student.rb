@@ -17,4 +17,6 @@ class Student < ApplicationRecord
 
     VALID_MAJORS = ["Computer Engineering BS","Computer Information Systems BS","Computer Science BS","Cybersecurity BS","Data Science and Machine Learning"]
     validates :major, inclusion: {in: VALID_MAJORS, message: "%{value} is not a valid major"}
+
+    VALID_STUDENT_COUNTS = [5,15,50]
 end

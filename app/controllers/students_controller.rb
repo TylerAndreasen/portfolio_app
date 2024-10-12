@@ -9,15 +9,20 @@ class StudentsController < ApplicationController
 
     @search_params = params[:search] || {}
     @students = Student.all
+    @no_search_params = false
+
+    # TODO TEST THIS CODE
+    # Thank you to Evan Cline for this code
+    if @search_params.values.all?(&:blank?)
+      # puts "Cana 699 No Search Data"
+      @students = nil
+      @no_search_params = true
+    end
 
     # I find this syntax to be unclear. I know that it is referecing data coming
     # from the request and referencing calls to the Model to access things from
     # the database, but which is which and the underlying logic I need to
     # investigate.
-
-    # Logging
-    Rails.logger.info "Params: #{@search_params.inspect}"
-
     if @search_params[:major].present?
       # puts "Cana 600  - Search by Major"
       @students = @students.where(major: @search_params[:major])
@@ -54,7 +59,18 @@ class StudentsController < ApplicationController
         end
       end
     end
+  
+    # I find the .present? syntax a little strange. I would interpret that to
+    # mean 'does the parameter exist?'/'was the parameter sent to the server?'
+    # when it seems to mean 'does the parameter contain data?'. Ultimately it
+    # works and is pretty straight forward to use tho.
+    # IMPORTANT:: This is always the last search filter!!
+    # if @search_params[:student_count].present?
+    #   @students.limit(:student_count)
+    # end
+
   end
+  
 
   # GET /students/1 or /students/1.json
   def show
