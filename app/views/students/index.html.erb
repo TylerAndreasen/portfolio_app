@@ -1,14 +1,39 @@
 <p style="color: green"><%= notice %></p>
-
 <h1>Students</h1>
+<%= render "search_form", search_params: @search_params %>
 
-<div id="students">
-  <% @students.each do |student| %>
-    <%= render student %>
-    <p>
-      <%= link_to "Show this student", student %>
-    </p>
+<div id="EasyNewStudentButton">
+  <% if @students != nil %>
+    <% if @students.size() > 10 %>
+      <%= link_to "New student", new_student_path %>
+    <% end %>
   <% end %>
 </div>
-
+<div id=StudentList>
+  <!-- The below should not be @students.count or similar, as such operations are invalid on nil objects -->
+  <% if @students != nil %>
+    <%= "Found "+@students.count.to_s+" Student(s)"%>
+    <table id=StudentTable role ="table" class="table table-dark">
+       <thead>
+          <tr>
+            <th role="columnheader" scope="col">First Name</th>
+            <th role="columnheader" scope="col">Last Name</th>
+            <th role="columnheader" scope="col">Major</th>
+            <th role="columnheader" scope="col">Graduation Date</th>
+            <th role="columnheader" scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @students.each do |student| %>
+            <%= render student %>
+          <% end %>
+        </tbody>
+    </table>
+  <% elsif @no_search_params %>
+    <p id=NoSearchParams> Please Enter Search Filters. </p>
+  <% else %>
+    <p id=NoStudentsFound> No matching students were found. </p>
+  <% end %>
+</div>
 <%= link_to "New student", new_student_path %>
+<%# TODO Add padding to the bottom of each page, maybe do this in the application file.%>
