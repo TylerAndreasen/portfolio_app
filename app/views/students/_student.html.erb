@@ -1,13 +1,13 @@
 <tr>
-  <th scope="row"></th>
   <td><%= student.first_name %></td>
   <td><%= student.last_name %></td>
   <td><%= student.major %></td>
   <td><%= student.graduation_date %></td>
   <td>
+    <%# This should not function, and should not remain in the code long term but works. TODO FIX ME \/ %>
     <a class="btn btn-primary" <%= link_to "Show", student %></a>
     <%# Non functional on purpose %>
-    <a class="btn btn-secondary" >Edit</a>
-    <a class="btn btn-danger" >Danger</a>
+    <a class="btn btn-success" >Edit</a>
+    <a class="btn btn-danger" >Delete</a>
   </td>
 </tr>

@@ -10,18 +10,17 @@
   <% end %>
 </div>
 <div id=StudentList>
-  <%# The below should not be @students.count or similar, as such operations are invalid on nil objects %>
+  <!-- The below should not be @students.count or similar, as such operations are invalid on nil objects -->
   <% if @students != nil %>
     <%= "Found "+@students.count.to_s+" Student(s)"%>
-    <table id=StudentTable class="table table-dark">
+    <table id=StudentTable role ="table" class="table table-dark">
        <thead>
           <tr>
-            <th scope="col"></th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Major</th>
-            <th scope="col">Graduation Date</th>
-            <th scope="col">Actions</th>
+            <th role="columnheader" scope="col">First Name</th>
+            <th role="columnheader" scope="col">Last Name</th>
+            <th role="columnheader" scope="col">Major</th>
+            <th role="columnheader" scope="col">Graduation Date</th>
+            <th role="columnheader" scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +30,7 @@
         </tbody>
     </table>
   <% elsif @no_search_params %>
-    <p id=NoSearchParams> Please Enter Search Filters. </p >
+    <p id=NoSearchParams> Please Enter Search Filters. </p>
   <% else %>
     <p id=NoStudentsFound> No matching students were found. </p>
   <% end %>

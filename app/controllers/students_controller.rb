@@ -59,6 +59,12 @@ class StudentsController < ApplicationController
         end
       end
     end
+
+    if @search_params[:search_all].present?
+      if @search_params[:search_all] == "View All"
+        @students = Student.all
+      end
+    end
   
     # I find the .present? syntax a little strange. I would interpret that to
     # mean 'does the parameter exist?'/'was the parameter sent to the server?'
@@ -115,18 +121,36 @@ class StudentsController < ApplicationController
 
   # DELETE /students/1 or /students/1.json
   def destroy
-    @student.destroy!
+    @student_count = Student.count.to_int
 
-    respond_to do |format|
-      format.html { redirect_to students_url, notice: "Student was successfully destroyed." }
-      format.json { head :no_content }
+    if (params[:id].to_i > @student_count) | (params[:id].to_i < 1)
+      respond_to do |format|
+        format.html { redirect_to students_url, status: :not_found, notice: "Could not destroy student: Invalid Index." }
+        format.json { head :no_content }
+      end
+    else
+      @student.destroy!
+
+      respond_to do |format|
+        format.html { redirect_to students_url, notice: "Student was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_student
-      @student = Student.find(params[:id])
+      @student_count = Student.count.to_int
+
+      if (params[:id].to_i > @student_count) | (params[:id].to_i < 1)
+        respond_to do |format|
+          format.html { redirect_to students_url, status: :not_found, notice: "Invalid Student Index." }
+          format.json { head :no_content }
+        end
+      else
+        @student = Student.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.

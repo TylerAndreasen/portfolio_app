@@ -1,19 +1,26 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @student %>
+<!--
+  This turned out to be a lot simpler than I feared. Though I was trying to
+  change the form that the index was using. And changing this away from the
+  default feels a little cleaner and caused way fewer issues.
+  TODO Find VSC extention for Ruby/.erb so that embedded ruby comments dont cascade color through the code
+-->
+<%= render :partial => "student_profile", :locals => { :student => @student } %>
 
 <p>
-  <strong>Profile Picture:</strong>
+  <strong>Profile Picture:</strong><p/>
   <% if @student.profile_picture.attached? %>
+    <% @label_text = "Profile Picture of "+@student.first_name+@student.last_name%>
     <%= image_tag @student.profile_picture, size: "300x300" %>
   <% else %>
-    <%= image_tag 'default_profile.jpg', size: "300x300" %>
+    <%= image_tag('default_profile.jpg', alt: "Handdrawn picture of a cat with 4 Oh 4 eyes holding a sign which reads: Not Found.", size: "300x300") %>
   <% end %>
  </p>
 
 <div>
   <%= link_to "Edit this student", edit_student_path(@student) %> |
-  <%= link_to "Back to students", students_path %>
+  <%= link_to "Back to students", students_path %> |
 
-  <%= button_to "Destroy this student", @student, method: :delete %>
+  <%= link_to "Destroy this student", @student, method: :delete %>
 </div>

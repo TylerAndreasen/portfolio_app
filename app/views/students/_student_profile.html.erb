@@ -1,26 +1,21 @@
 <div id="<%= dom_id student %>">
-  <p>
-    <strong>First Name:</strong>
-    <%= student.first_name %>
+  <p role="document">
+    <strong>Student Name:</strong>
+    <%= (student.first_name)+(" ")+(student.last_name) %>
   </p>
 
   <p>
-    <strong>Last Name:</strong>
-    <%= student.last_name %>
-    </p>
-
-  <p>
-    <strong>School Email:</strong>
+    <strong>University Email:</strong>
     <%= student.school_email %>
-    </p>
+   </p>
 
   <p>
-    <strong>Major:</strong>
+    <strong>Selected Major:</strong>
     <%= student.major %>
   </p>
 
   <p>
-    <strong>Graduation Date:</strong>
+    <strong>Expected Graduation Date:</strong>
     <%= student.graduation_date %>
   </p>
 </div>

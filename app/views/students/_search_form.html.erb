@@ -2,25 +2,28 @@
     <%= form_with(url: students_path, method: :get, local: true, class: "form-inline") do |form| %>
         <div id=MajorSelect>
             <%= form.label :major, "Select Major", class: "form-label" %>
-            <%= form.select :major, options_for_select(Student::VALID_MAJORS), { prompt: "Any Major"}, name: 'search[major]', class: "form-control" %> 
+            <%= form.select :major, options_for_select(Student::VALID_MAJORS), { prompt: "Any Major"}, name: 'search[major]' %>
+            <p/>
         </div>
 
         <div id=GraduationDateSelect>
             <%= form.label :graduation_relation, "Select Graduation Relation", class: "form-label" %>
-            <%= form.select :graduation_relation, options_for_select(Student::VALID_GRADUATION_RELATIONS), { prompt: "Select An Option"}, name: 'search[graduation_relation]', class: "form-control" %> 
+            <%= form.select :graduation_relation, options_for_select(Student::VALID_GRADUATION_RELATIONS), { prompt: "Select An Option"}, name: 'search[graduation_relation]' %> 
+            <p/>
+            <p/>
             <%= form.label :graduation_date, "Date", class: "form-label" %>
-            <p>
-            <%# After more fighting with this than I should have done, I copied this from the Student form %> 
+            <%# After more fighting with this than I should have done, I copied this from the Student form %>
             <%= form.date_field :graduation_date, name: 'search[graduation_date]' %>
         </div>
 
         <div id=MaximumStudentCountDropdown>
             <%= form.label :student_count, "Maximum Shown Students ** Currently Non-Functional", class: "form-label" %>
-            <%= form.select :student_count, options_for_select(Student::VALID_STUDENT_COUNTS), { prompt: "Select An Option"}, name: 'search[student_count]', class: "form-control" %>
+            <%= form.select :student_count, options_for_select(Student::VALID_STUDENT_COUNTS), { prompt: "Select An Option"}, name: 'search[student_count]' %>
         </div>
-
-        <div id=SearchButton>
+        <p/>
+        <div id=SearchButtons>
             <%= form.submit "Search", class: "btn btn-primary" %>
+            <%= form.submit "View All", class: "btn btn-primary", name: 'search[search_all]'%>
         </div>
     <% end %>
 </div>
