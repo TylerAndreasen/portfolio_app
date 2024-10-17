@@ -19,10 +19,6 @@ class StudentsController < ApplicationController
       @no_search_params = true
     end
 
-    # I find this syntax to be unclear. I know that it is referecing data coming
-    # from the request and referencing calls to the Model to access things from
-    # the database, but which is which and the underlying logic I need to
-    # investigate.
     if @search_params[:major].present?
       # puts "Cana 600  - Search by Major"
       @students = @students.where(major: @search_params[:major])
@@ -35,11 +31,6 @@ class StudentsController < ApplicationController
 
       # If the user selected to search by grad date...
       if @search_params[:graduation_relation].present?
-
-        # ... TEMP:: If the user combines invalid selections, no data is returned by default
-        # ... TODO:: Determine what the most user friendly behavior that I can build is for 
-        #       invalid user data entry. This may require JS work to stop the form being submitted
-        # ... If the user entered no date
  
 
         @temp = @search_params[:graduation_date].to_s
@@ -66,10 +57,7 @@ class StudentsController < ApplicationController
       end
     end
   
-    # I find the .present? syntax a little strange. I would interpret that to
-    # mean 'does the parameter exist?'/'was the parameter sent to the server?'
-    # when it seems to mean 'does the parameter contain data?'. Ultimately it
-    # works and is pretty straight forward to use tho.
+    
     # IMPORTANT:: This is always the last search filter!!
     # if @search_params[:student_count].present?
     #   @students.limit(:student_count)
