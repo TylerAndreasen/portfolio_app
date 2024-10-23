@@ -1,11 +1,10 @@
 class Student < ApplicationRecord
-    #MSU_REGEX = /'[A-Za-z0-9]+@msudenver\.edu/
-    #MSU_REGEX = /\A[\w+\-.]+@msudenver\.edu\z/i #Thanks to Evan lastname for the regex.
     validates :first_name, presence: true
     validates :last_name, presence: true
-    #PFP not required
-    validates :school_email, uniqueness: true
-    validates :school_email, format: { with: /\A[\w]+@msudenver\.edu+\z/, message: "does not match expected format." }, uniqueness: true
+    
+    # PFP not required
+    # Email removed to be handled by Devise 
+
     validates :major, presence: true
 
 
@@ -18,5 +17,6 @@ class Student < ApplicationRecord
     VALID_MAJORS = ["Computer Engineering BS","Computer Information Systems BS","Computer Science BS","Cybersecurity BS","Data Science and Machine Learning"]
     validates :major, inclusion: {in: VALID_MAJORS, message: "%{value} is not a valid major"}
 
+    # Currently unused, though will be a part of the optional count-per-page limit option
     VALID_STUDENT_COUNTS = [5,15,50]
 end
