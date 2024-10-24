@@ -32,7 +32,6 @@ Student.destroy_all # Clear existing records if any
  student =Student.create!(
    first_name: "First #{i + 1}",
    last_name: "Last #{i + 1}",
-   school_email: "student#{i + 1}@msudenver.edu",
    major: Student::VALID_MAJORS.sample, # Assuming you have a VALID_MAJORS constant
    graduation_date: Faker::Date.between(from: 2.years.ago, to: 2.years.from_now),
   

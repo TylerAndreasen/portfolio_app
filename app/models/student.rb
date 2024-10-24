@@ -1,11 +1,10 @@
 class Student < ApplicationRecord
-    #MSU_REGEX = /'[A-Za-z0-9]+@msudenver\.edu/
-    #MSU_REGEX = /\A[\w+\-.]+@msudenver\.edu\z/i #Thanks to Evan lastname for the regex.
     validates :first_name, presence: true
     validates :last_name, presence: true
-    #PFP not required
-    validates :school_email, uniqueness: true
-    validates :school_email, format: { with: /\A[\w]+@msudenver\.edu+\z/, message: "does not match expected format." }, uniqueness: true
+    
+    # PFP not required
+    # Email now handled by Devise
+    
     validates :major, presence: true
 
 

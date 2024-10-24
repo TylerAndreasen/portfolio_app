@@ -129,6 +129,10 @@ class StudentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_student
+
+      # This implementation is not ideal, as it requires student indecies to begin an 1 and count up,
+      # which is not always easy to do. I need to take notes on a couple things, and then figure this
+      # out and take notes on it.
       @student_count = Student.count.to_int
 
       if (params[:id].to_i > @student_count) | (params[:id].to_i < 1)
@@ -143,6 +147,6 @@ class StudentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :school_email, :major, :graduation_date, :profile_picture)
+      params.require(:student).permit(:first_name, :last_name).permit(:major, :graduation_date).permit( :profile_picture)
     end
 end
