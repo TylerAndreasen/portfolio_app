@@ -1,9 +1,21 @@
 class Student < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
     validates :first_name, presence: true
     validates :last_name, presence: true
     
     # PFP not required
-    # Email now handled by Devise
+    
+    
+    validate :email_format
+    def email_format
+        unless email =~ /\A[\w+\-.]+@msudenver\.edu\z/i
+            errors.add(:email, "must be an @msudenver.edu email address")
+        end
+    end
+ 
     
     validates :major, presence: true
 
