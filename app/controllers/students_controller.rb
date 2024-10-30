@@ -40,7 +40,7 @@ class StudentsController < ApplicationController
         @dy = @temp[8..9]
 
         # ... If the selection is Before
-        if @search_params[:graduation_relation] == "Before"
+        if @search_params[:graduation_relation] == "Before" # TODO reference the list of valid relations in the student class
           # puts "Cana 602 - Search by Graduation Date: Before: "+@temp
           @students = @students.where(:graduation_date => Time.new(1970,1,1)..Time.new(@yr,@mt,@dy))
         # ... If the selection is After
